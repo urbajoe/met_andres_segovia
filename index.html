@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Método Segovia & Neurociência · Instituto Urbano Rocha</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8cc80;
+    --gold-dark: #8b6914;
+    --cream: #f7f2e8;
+    --ivory: #faf7f2;
+    --dark: #1a1410;
+    --dark-mid: #2d2318;
+    --brown: #3d2b1a;
+    --text: #3a2e22;
+    --text-light: #7a6a55;
+    --border: rgba(201,168,76,0.25);
+    --neuro-accent: rgba(120,80,200,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--dark);
+    color: var(--cream);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(201,168,76,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(201,168,76,0.04) 0%, transparent 50%),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a84c' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Header ── */
+  header {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 3rem 2rem 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .ornament-line {
+    flex: 1;
+    max-width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.6;
+  }
+
+  .music-icon {
+    font-size: 1.4rem;
+    color: var(--gold);
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.7; text-shadow: 0 0 8px rgba(201,168,76,0.3); }
+    50% { opacity: 1; text-shadow: 0 0 20px rgba(201,168,76,0.7); }
+  }
+
+  .institute-name {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.3rem, 3vw, 2.2rem);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 0.25rem;
+  }
+
+  .institute-name span { color: var(--gold); }
+
+  .course-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.7rem);
+    font-style: italic;
+    color: var(--gold-light);
+    letter-spacing: 0.04em;
+    margin-top: 0.5rem;
+    margin-bottom: 0.2rem;
+    opacity: 0.9;
+  }
+
+  .course-subtitle {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .back-link {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: color 0.3s;
+  }
+  .back-link:hover { color: var(--gold); }
+  .back-link::before { content: '←'; font-size: 0.8rem; }
+
+  /* ── Main layout ── */
+  main {
+    position: relative;
+    z-index: 5;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+  }
+
+  /* ── Hero banner with infographic ── */
+  .hero-banner {
+    position: relative;
+    margin-bottom: 2.5rem;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    background: rgba(26,20,16,0.9);
+  }
+
+  .hero-banner img {
+    width: 100%;
+    display: block;
+    opacity: 0.95;
+    transition: opacity 0.4s;
+  }
+  .hero-banner:hover img { opacity: 1; }
+
+  .hero-caption {
+    padding: 0.75rem 1.2rem;
+    background: rgba(26,20,16,0.95);
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .hero-caption-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--gold-light);
+    opacity: 0.85;
+  }
+
+  .hero-caption-tag {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    white-space: nowrap;
+  }
+
+  /* ── Tabs ── */
+  .tabs-nav {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tabs-nav::-webkit-scrollbar { display: none; }
+
+  .tab-btn {
+    font-family: 'Cinzel', serif;
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    background: none;
+    border: none;
+    padding: 0.75rem 1.3rem 1rem;
+    cursor: pointer;
+    white-space: nowrap;
+    position: relative;
+    transition: color 0.35s ease;
+    flex-shrink: 0;
+  }
+
+  .tab-btn::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    transform: scaleX(0);
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .tab-btn:hover { color: var(--gold-light); }
+  .tab-btn.active { color: var(--gold); }
+  .tab-btn.active::after { transform: scaleX(1); }
+
+  /* ── Tab panels ── */
+  .tab-panel {
+    display: none;
+    animation: fadeUp 0.45s cubic-bezier(0.4,0,0.2,1);
+  }
+  .tab-panel.active { display: block; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Section title ── */
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border), transparent);
+  }
+
+  /* ── Intro block ── */
+  .intro-block {
+    background: rgba(26,20,16,0.8);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 2rem 2.2rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .intro-block::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .intro-block h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 0.8rem;
+  }
+
+  .intro-block p {
+    font-size: 0.92rem;
+    line-height: 1.8;
+    color: rgba(247,242,232,0.75);
+  }
+
+  .intro-block p + p { margin-top: 0.75rem; }
+
+  /* ── 3-column concept grid ── */
+  .concept-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 680px) {
+    .concept-grid { grid-template-columns: 1fr; }
+  }
+
+  .concept-card {
+    background: rgba(26,20,16,0.95);
+    padding: 1.8rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s ease;
+  }
+
+  .concept-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+
+  .concept-card:hover { background: rgba(45,35,24,0.95); }
+  .concept-card:hover::before { opacity: 1; }
+
+  .concept-icon {
+    font-size: 1.6rem;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  .concept-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+
+  .concept-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 0.6rem;
+  }
+
+  .concept-desc {
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: rgba(247,242,232,0.65);
+  }
+
+  /* ── Module cards (plano de aula) ── */
+  .modules-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 680px) {
+    .modules-grid { grid-template-columns: 1fr; }
+  }
+
+  .module-card {
+    background: rgba(26,20,16,0.95);
+    padding: 2rem 1.8rem;
+    position: relative;
+    transition: background 0.3s;
+  }
+
+  .module-card:hover { background: rgba(45,35,24,0.95); }
+
+  .module-number {
+    font-family: 'Cinzel', serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: rgba(201,168,76,0.12);
+    position: absolute;
+    top: 1.2rem;
+    right: 1.5rem;
+    line-height: 1;
+  }
+
+  .module-badge {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.56rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--dark);
+    background: var(--gold);
+    padding: 0.2rem 0.6rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .module-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 0.4rem;
+  }
+
+  .module-subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    opacity: 0.8;
+  }
+
+  .module-lessons {
+    list-style: none;
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+  }
+
+  .module-lessons li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.82rem;
+    color: rgba(247,242,232,0.7);
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(201,168,76,0.08);
+    line-height: 1.5;
+  }
+
+  .module-lessons li:last-child { border-bottom: none; }
+
+  .lesson-dot {
+    width: 4px;
+    height: 4px;
+    background: var(--gold);
+    border-radius: 50%;
+    margin-top: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .neuro-tag {
+    display: inline-block;
+    font-size: 0.68rem;
+    color: var(--gold-light);
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+    margin-top: 0.4rem;
+  }
+
+  /* ── Study cards (estudos e exercícios) ── */
+  .studies-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 680px) {
+    .studies-grid { grid-template-columns: 1fr; }
+  }
+
+  .study-card {
+    background: rgba(26,20,16,0.9);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 1.5rem 1.4rem;
+    text-decoration: none;
+    display: block;
+    transition: background 0.3s, border-color 0.3s, transform 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .study-card::after {
+    content: '→';
+    position: absolute;
+    bottom: 1.2rem;
+    right: 1.4rem;
+    color: var(--gold);
+    font-size: 1rem;
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+
+  .study-card:hover {
+    background: rgba(45,35,24,0.95);
+    border-color: rgba(201,168,76,0.45);
+    transform: translateY(-2px);
+  }
+
+  .study-card:hover::after {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .study-page {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .study-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 0.25rem;
+  }
+
+  .study-tempo {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.82rem;
+    color: var(--gold-light);
+    margin-bottom: 0.75rem;
+    opacity: 0.8;
+  }
+
+  .study-quote {
+    font-size: 0.8rem;
+    line-height: 1.65;
+    color: rgba(247,242,232,0.6);
+    border-left: 2px solid rgba(201,168,76,0.35);
+    padding-left: 0.8rem;
+    margin-bottom: 0.75rem;
+    font-style: italic;
+  }
+
+  .study-neuro {
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: rgba(247,242,232,0.55);
+    padding-bottom: 1.5rem;
+  }
+
+  .study-link-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.9;
+  }
+
+  /* ── Scales section ── */
+  .scales-block {
+    background: rgba(26,20,16,0.9);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+
+  .scales-header {
+    padding: 1.5rem 1.8rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .scales-header-text h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 0.2rem;
+  }
+
+  .scales-header-text p {
+    font-size: 0.8rem;
+    color: rgba(247,242,232,0.55);
+  }
+
+  .scales-pdf-link {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dark);
+    background: var(--gold);
+    padding: 0.55rem 1.1rem;
+    text-decoration: none;
+    border-radius: 1px;
+    transition: background 0.3s;
+    white-space: nowrap;
+  }
+  .scales-pdf-link:hover { background: var(--gold-light); }
+
+  .fingering-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .fingering-table th {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(201,168,76,0.06);
+    padding: 0.75rem 1.2rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .fingering-table td {
+    padding: 0.75rem 1.2rem;
+    font-size: 0.85rem;
+    color: rgba(247,242,232,0.75);
+    border-bottom: 1px solid rgba(201,168,76,0.08);
+  }
+
+  .fingering-table tr:last-child td { border-bottom: none; }
+  .fingering-table tr:hover td { background: rgba(201,168,76,0.04); color: var(--cream); }
+
+  .combo-code {
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+  }
+
+  /* ── Methodology block ── */
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 680px) {
+    .method-grid { grid-template-columns: 1fr; }
+  }
+
+  .method-item {
+    background: rgba(26,20,16,0.9);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 1.5rem 1.3rem;
+    position: relative;
+  }
+
+  .method-item::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .method-icon {
+    font-size: 1.4rem;
+    margin-bottom: 0.7rem;
+    display: block;
+  }
+
+  .method-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+
+  .method-desc {
+    font-size: 0.8rem;
+    line-height: 1.7;
+    color: rgba(247,242,232,0.6);
+  }
+
+  /* ── Ref block ── */
+  .ref-block {
+    background: rgba(26,20,16,0.7);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 2px;
+    padding: 1.5rem 1.8rem;
+  }
+
+  .ref-block h4 {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+
+  .ref-block ol {
+    padding-left: 1.2rem;
+  }
+
+  .ref-block ol li {
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: rgba(247,242,232,0.55);
+    margin-bottom: 0.4rem;
+    font-style: italic;
+  }
+
+  /* ── Prof badge ── */
+  .prof-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 0.3rem 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .prof-badge span { color: var(--gold); }
+
+  /* ── Footer ── */
+  footer {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    padding: 1.5rem 2rem;
+    border-top: 1px solid var(--border);
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-light);
+  }
+
+  /* ── Highlight quote ── */
+  .highlight-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--gold-light);
+    text-align: center;
+    padding: 1.5rem 2rem;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+    line-height: 1.7;
+    opacity: 0.9;
+  }
+
+  /* ── Curriculum table rows ── */
+  .curriculum-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+    font-size: 0.83rem;
+  }
+
+  .curriculum-table thead th {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(201,168,76,0.06);
+    padding: 0.65rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+
+  .curriculum-table td {
+    padding: 0.7rem 1rem;
+    color: rgba(247,242,232,0.72);
+    border-bottom: 1px solid rgba(201,168,76,0.08);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  .curriculum-table tr:hover td { background: rgba(201,168,76,0.04); }
+  .curriculum-table td:first-child { color: var(--gold); font-family: 'Cinzel', serif; font-size: 0.7rem; }
+
+  .curriculum-table a {
+    color: var(--gold-light);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(201,168,76,0.3);
+    transition: color 0.2s, border-color 0.2s;
+    font-size: 0.78rem;
+  }
+
+  .curriculum-table a:hover {
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+
+  .curriculum-section {
+    background: rgba(26,20,16,0.9);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+  }
+
+  .curriculum-section-header {
+    padding: 0.9rem 1.2rem;
+    background: rgba(201,168,76,0.05);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .curriculum-section-header h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cream);
+  }
+
+  .curriculum-section-header .mod-num {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    color: var(--dark);
+    background: var(--gold);
+    padding: 0.15rem 0.55rem;
+  }
+
+  .neuro-pill {
+    margin-left: auto;
+    font-size: 0.65rem;
+    color: var(--gold-light);
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 0.15rem 0.55rem;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+
+</style>
+</head>
+<body>
+
+<header>
+  <a href="https://institutourbanorocha.github.io/seletor/" class="back-link">Portal</a>
+  <div class="logo-ornament">
+    <div class="ornament-line"></div>
+    <span class="music-icon">𝄞</span>
+    <div class="ornament-line"></div>
+  </div>
+  <div class="institute-name">Instituto <span>Urbano Rocha</span></div>
+  <div class="course-title">Método Andrés Segovia sob a Lente da Neurociência</div>
+  <div class="course-subtitle">Violão Clássico · Técnica & Ciência do Aprendizado Motor</div>
+</header>
+
+<main>
+
+  <!-- ── HERO INFOGRAPHIC ── -->
+  <div class="hero-banner">
+    <img src="unnamed.png" alt="Infográfico: Violão e Ciência — O Método Segovia sob a Lente da Neurociência" />
+    <div class="hero-caption">
+      <span class="hero-caption-text">Violão e Ciência: O Método Segovia sob a Lente da Neurociência</span>
+      <span class="hero-caption-tag">Instituto Urbano Rocha · Por Prof. Urbano Rocha</span>
+    </div>
+  </div>
+
+  <!-- ── TABS NAV ── -->
+  <nav class="tabs-nav" role="tablist">
+    <button class="tab-btn active" onclick="switchTab('introducao')" role="tab">Introdução</button>
+    <button class="tab-btn" onclick="switchTab('neurociencia')" role="tab">Neurociência</button>
+    <button class="tab-btn" onclick="switchTab('escalas')" role="tab">Escalas</button>
+    <button class="tab-btn" onclick="switchTab('estudos')" role="tab">Estudos</button>
+    <button class="tab-btn" onclick="switchTab('plano')" role="tab">Plano de Aula</button>
+    <button class="tab-btn" onclick="switchTab('metodologia')" role="tab">Metodologia</button>
+  </nav>
+
+  <!-- ══ PANEL: INTRODUÇÃO ══ -->
+  <div id="panel-introducao" class="tab-panel active">
+    <div class="section-title">Apresentação do Curso</div>
+
+    <div class="prof-badge">Curadoria e texto: <span>Prof. Urbano Rocha</span></div>
+
+    <div class="intro-block">
+      <h2>Andrés Segovia e o Violão Clássico</h2>
+      <p>Andrés Segovia elevou o violão clássico a um patamar de reconhecimento global. Seu método enfatiza a técnica fundamental, o domínio das escalas e a expressividade. Segovia acreditava que a técnica deveria servir à expressão artística, guiando os estudantes através de um rigor técnico aliado à sensibilidade musical.</p>
+      <p>Este curso apresenta a tradução e análise do método de Segovia integrada a uma perspectiva neurocientífica moderna — unindo a tradição do mestre às descobertas contemporâneas sobre como o cérebro aprende música.</p>
+    </div>
+
+    <div class="highlight-quote">
+      "A técnica deve servir à expressão artística — não o contrário."
+      <br><span style="font-size:0.85rem;opacity:0.6;">Andrés Segovia</span>
+    </div>
+
+    <div class="section-title">Pilares do Método</div>
+
+    <div class="concept-grid">
+      <div class="concept-card">
+        <span class="concept-icon">🧠</span>
+        <div class="concept-label">Neurociência</div>
+        <div class="concept-title">Prática Lenta e Mielinização</div>
+        <div class="concept-desc">Segovia insistia na prática lenta e deliberada. Neurocientificamente, isso favorece a mielinização — o isolamento dos circuitos neurais que aumenta a velocidade e a precisão dos impulsos nervosos.</div>
+      </div>
+      <div class="concept-card">
+        <span class="concept-icon">🔁</span>
+        <div class="concept-label">Plasticidade Neural</div>
+        <div class="concept-title">Repetição Variada (LTP)</div>
+        <div class="concept-desc">A repetição com diferentes combinações de dedos promove a plasticidade sináptica, fortalecendo as conexões entre o córtex motor e o auditivo — base biológica da memória de longo prazo.</div>
+      </div>
+      <div class="concept-card">
+        <span class="concept-icon">🎭</span>
+        <div class="concept-label">Sistema Límbico</div>
+        <div class="concept-title">Expressão e Emoção</div>
+        <div class="concept-desc">A música deve "cantar". A conexão emocional com o som envolve o sistema límbico, tornando o aprendizado mais profundo e duradouro através do engajamento afetivo.</div>
+      </div>
+    </div>
+
+    <div class="ref-block">
+      <h4>Referências Bibliográficas</h4>
+      <ol>
+        <li>pdfcoffee.com — Método Andrés Segovia, Documento original</li>
+        <li>Coyle, D. (2009). <em>The Talent Code.</em> (Sobre mielinização e prática deliberada)</li>
+        <li>Levitin, D. J. (2006). <em>This Is Your Brain on Music.</em> (Sobre neurociência e aprendizado musical)</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- ══ PANEL: NEUROCIÊNCIA ══ -->
+  <div id="panel-neurociencia" class="tab-panel">
+    <div class="section-title">A Ciência por Trás da Técnica</div>
+
+    <div class="intro-block">
+      <h2>A Visão Neurocientífica do Método Segovia</h2>
+      <p>A eficácia do método de Segovia pode ser explicada por princípios fundamentais da neurociência do aprendizado motor. Ao praticar conforme as orientações do mestre, o estudante está, na verdade, otimizando seu sistema nervoso.</p>
+    </div>
+
+    <div class="concept-grid" style="margin-bottom:2rem;">
+      <div class="concept-card">
+        <span class="concept-icon">⚡</span>
+        <div class="concept-label">Princípio 1</div>
+        <div class="concept-title">Mielinização e Prática Lenta</div>
+        <div class="concept-desc">A mielina é uma substância isolante que envolve os axônios dos neurônios. Quanto mais um circuito neural é ativado com precisão (prática lenta), mais camadas de mielina são adicionadas. A prática rápida e descuidada cria "ruído" sináptico, enquanto a prática lenta de Segovia constrói "autoestradas" neurais eficientes.</div>
+      </div>
+      <div class="concept-card">
+        <span class="concept-icon">🔗</span>
+        <div class="concept-label">Princípio 2</div>
+        <div class="concept-title">Plasticidade Neural e Repetição</div>
+        <div class="concept-desc">A recomendação de repetir escalas sete vezes com diferentes combinações de dedos promove a plasticidade sináptica. A repetição deliberada fortalece as conexões entre o córtex motor (movimento) e o córtex auditivo (som) — processo conhecido como Long-Term Potentiation (LTP), base biológica da memória.</div>
+      </div>
+      <div class="concept-card">
+        <span class="concept-icon">🌙</span>
+        <div class="concept-label">Princípio 3</div>
+        <div class="concept-title">Memória Muscular e Consolidação</div>
+        <div class="concept-desc">O foco na posição das mãos e no relaxamento minimiza a fadiga neural. A atenção plena em cada nota engaja o sistema de neuromodulação (dopamina e acetilcolina), que sinaliza ao cérebro quais conexões devem ser reforçadas durante o sono, consolidando o aprendizado.</div>
+      </div>
+    </div>
+
+    <div class="section-title">Orientações Técnicas Gerais</div>
+
+    <div class="method-grid">
+      <div class="method-item">
+        <span class="method-icon">✋</span>
+        <div class="method-title">Posição das Mãos</div>
+        <div class="method-desc">Mão direita relaxada com ataque perpendicular. Isso otimiza o biofeedback tátil, permitindo que o cérebro receba informações precisas sobre a resistência da corda.</div>
+      </div>
+      <div class="method-item">
+        <span class="method-icon">🎯</span>
+        <div class="method-title">Prática Deliberada</div>
+        <div class="method-desc">A prática deve ser consciente. O cérebro não aprende com a repetição mecânica, mas com a repetição focada na correção de erros — cada nota tem intenção.</div>
+      </div>
+      <div class="method-item">
+        <span class="method-icon">🎶</span>
+        <div class="method-title">Expressão Musical</div>
+        <div class="method-desc">A música deve "cantar". Isso envolve o sistema límbico, tornando o aprendizado mais profundo e duradouro através da conexão emocional com o som.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PANEL: ESCALAS ══ -->
+  <div id="panel-escalas" class="tab-panel">
+    <div class="section-title">Escalas Diatônicas Maiores e Menores</div>
+
+    <div class="intro-block">
+      <h2>A Espinha Dorsal da Técnica</h2>
+      <p>As escalas são a espinha dorsal da técnica de Segovia. Ele preconiza a prática com o toque "apoyando" (apoiado), repetindo cada escala sete vezes para desenvolver clareza e controle. Referência: Páginas 49–55 do documento original.</p>
+    </div>
+
+    <div class="scales-block">
+      <div class="scales-header">
+        <div class="scales-header-text">
+          <h3>Escalas Diatônicas — Páginas 49–55</h3>
+          <p>Toque "apoyando" · 7 repetições por escala · Combinações variadas</p>
+        </div>
+        <a href="https://www.dropbox.com/scl/fi/tcsisqioadhuoya5aem8i/49-55.pdf?rlkey=tn1bokdoow5u6xblvyfww00rd&st=e7dayunx&dl=0" target="_blank" class="scales-pdf-link">Acessar PDF →</a>
+      </div>
+
+      <table class="fingering-table">
+        <thead>
+          <tr>
+            <th>Combinação</th>
+            <th>Dedos (Mão Direita)</th>
+            <th>Foco Neurocientífico</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="combo-code">1</span></td>
+            <td>i – m</td>
+            <td>Alternância básica · Automatização inicial do padrão</td>
+          </tr>
+          <tr>
+            <td><span class="combo-code">2</span></td>
+            <td>m – i</td>
+            <td>Inversão de padrão · Flexibilidade neural</td>
+          </tr>
+          <tr>
+            <td><span class="combo-code">3</span></td>
+            <td>m – a</td>
+            <td>Dissociação digital · Independência anular</td>
+          </tr>
+          <tr>
+            <td><span class="combo-code">4</span></td>
+            <td>a – m</td>
+            <td>Controle do anular · Fortalecimento do circuito</td>
+          </tr>
+          <tr>
+            <td><span class="combo-code">5</span></td>
+            <td>i – a</td>
+            <td>Salto de dedo · Coordenação ampliada</td>
+          </tr>
+          <tr>
+            <td><span class="combo-code">6</span></td>
+            <td>a – i</td>
+            <td>Inversão do salto · Plasticidade bidirecional</td>
+          </tr>
+          <tr>
+            <td><span class="combo-code">7</span></td>
+            <td>i – m – a</td>
+            <td>Padrão triplo · Chunking e velocidade complexa</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ref-block" style="margin-top:1.5rem;">
+      <h4>Legenda de dedilhado</h4>
+      <ol style="list-style:none;padding:0;display:flex;gap:2rem;flex-wrap:wrap;">
+        <li style="color:rgba(247,242,232,0.7);font-style:normal;"><span style="color:var(--gold);font-family:'Cinzel',serif;">i</span> = indicador</li>
+        <li style="color:rgba(247,242,232,0.7);font-style:normal;"><span style="color:var(--gold);font-family:'Cinzel',serif;">m</span> = médio</li>
+        <li style="color:rgba(247,242,232,0.7);font-style:normal;"><span style="color:var(--gold);font-family:'Cinzel',serif;">a</span> = anular</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- ══ PANEL: ESTUDOS ══ -->
+  <div id="panel-estudos" class="tab-panel">
+    <div class="section-title">Estudos e Exercícios Selecionados</div>
+
+    <div class="studies-grid">
+
+      <a class="study-card" href="https://www.dropbox.com/scl/fi/0gvf87gfihrp45xx3y9wl/41.pdf?rlkey=49jp2i3ji24pdnn9jyfsfbkud&st=so5m5em9&dl=0" target="_blank">
+        <div class="study-page">Página 41</div>
+        <div class="study-title">Estudo de N. Coste</div>
+        <div class="study-tempo">Andante</div>
+        <div class="study-quote">"Escrita por Napoleon Coste, aluno de F. Sor. Exige persistência para dominar sua complexidade." — Segovia</div>
+        <div class="study-neuro">🧠 Perspectiva Neuro: Trabalha a independência digital, desafiando o cérebro a dissociar movimentos dos dedos da mão esquerda.</div>
+        <div class="study-link-label">Acessar partitura</div>
+      </a>
+
+      <a class="study-card" href="https://www.dropbox.com/scl/fi/sg5tdkplz660acdl0fmdg/42.pdf?rlkey=akfnpamiid2vgj8nop74bvknj&st=f2riq08p&dl=0" target="_blank">
+        <div class="study-page">Página 42</div>
+        <div class="study-title">Pequena Anedota — A. Segovia</div>
+        <div class="study-tempo">Andante</div>
+        <div class="study-quote">"Um madrigal encantador… 'Perdoe-me, não tive tempo de escrever algo mais curto'." — Segovia</div>
+        <div class="study-neuro">🧠 Perspectiva Neuro: Foca no processamento emocional e dinâmico. O uso de crescendo e diminuendo treina o controle fino da força motora (modulação de unidades motoras).</div>
+        <div class="study-link-label">Acessar partitura</div>
+      </a>
+
+      <a class="study-card" href="https://www.dropbox.com/scl/fi/6rz121picvl1lajjoyti7/43.pdf?rlkey=tg4x9wt5608edqtr4jg10bfbj&st=lp3rlm56&dl=0" target="_blank">
+        <div class="study-page">Página 43</div>
+        <div class="study-title">Estudo de D. Aguado</div>
+        <div class="study-tempo">Andante</div>
+        <div class="study-quote">"Excelente lição para dominar o arpejo." — Segovia</div>
+        <div class="study-neuro">🧠 Perspectiva Neuro: Arpejos desenvolvem o automatismo motor, permitindo que o cérebro execute padrões complexos com baixo custo cognitivo.</div>
+        <div class="study-link-label">Acessar partitura</div>
+      </a>
+
+      <a class="study-card" href="https://www.dropbox.com/scl/fi/hwihpvv7yy2rzl3sg0tk1/44.pdf?rlkey=tfb69886g9yhbk4cc9z3r04p5&st=e1yi3k06&dl=0" target="_blank">
+        <div class="study-page">Página 44</div>
+        <div class="study-title">Estudo de A. Segovia</div>
+        <div class="study-tempo">Andante</div>
+        <div class="study-quote">"Pequeno exercício de acordes… A Fermata indica o aumento da duração conforme a sensibilidade." — Segovia</div>
+        <div class="study-neuro">🧠 Perspectiva Neuro: Treina a sincronização neural, exigindo que múltiplos dedos disparem os sinais motores simultaneamente.</div>
+        <div class="study-link-label">Acessar partitura</div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ══ PANEL: PLANO DE AULA ══ -->
+  <div id="panel-plano" class="tab-panel">
+    <div class="section-title">Plano de Aula · "A Mente do Mestre"</div>
+
+    <div class="intro-block">
+      <h2>Estrutura Curricular</h2>
+      <p>O curso está organizado em quatro módulos estratégicos. Cada módulo conecta um pilar da técnica de Segovia a um processo neurocientífico específico, garantindo que o aluno compreenda não apenas o "como" tocar, mas também o "porquê" biológico por trás de cada exercício.</p>
+    </div>
+
+    <!-- Módulo 1 -->
+    <div class="curriculum-section">
+      <div class="curriculum-section-header">
+        <span class="mod-num">MOD 1</span>
+        <h3>Fundações e Mielinização</h3>
+        <span class="neuro-pill">Mielinização Neural</span>
+      </div>
+      <table class="curriculum-table">
+        <thead>
+          <tr>
+            <th>Aula</th>
+            <th>Tema Principal</th>
+            <th>Técnica de Segovia</th>
+            <th>Fundamento Neuro</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>A Arquitetura do Som</td>
+            <td>Postura e ataque perpendicular</td>
+            <td>Propriocepção e Biofeedback</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>O Código da Mielina</td>
+            <td>Prática lenta e ultra-precisa</td>
+            <td>Mielinização de circuitos motores</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Módulo 2 -->
+    <div class="curriculum-section">
+      <div class="curriculum-section-header">
+        <span class="mod-num">MOD 2</span>
+        <h3>Escalas e Plasticidade Neural</h3>
+        <span class="neuro-pill">Long-Term Potentiation</span>
+      </div>
+      <table class="curriculum-table">
+        <thead>
+          <tr>
+            <th>Aula</th>
+            <th>Tema Principal</th>
+            <th>Referência / PDF</th>
+            <th>Fundamento Neuro</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>3</td>
+            <td>Circuitos de Agilidade</td>
+            <td><a href="https://www.dropbox.com/scl/fi/tcsisqioadhuoya5aem8i/49-55.pdf?rlkey=tn1bokdoow5u6xblvyfww00rd&st=ykr76tj8&dl=0" target="_blank">Escalas Diatônicas Maiores (pp. 49–55) ↗</a></td>
+            <td>Plasticidade Sináptica (LTP)</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>O Mapa do Braço</td>
+            <td><a href="https://www.dropbox.com/scl/fi/tcsisqioadhuoya5aem8i/49-55.pdf?rlkey=tn1bokdoow5u6xblvyfww00rd&st=ykr76tj8&dl=0" target="_blank">Escalas Diatônicas Menores (pp. 49–55) ↗</a></td>
+            <td>Mapeamento Espacial e Memória</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Módulo 3 -->
+    <div class="curriculum-section">
+      <div class="curriculum-section-header">
+        <span class="mod-num">MOD 3</span>
+        <h3>Expressão e o Sistema Límbico</h3>
+        <span class="neuro-pill">Sistema Límbico</span>
+      </div>
+      <table class="curriculum-table">
+        <thead>
+          <tr>
+            <th>Aula</th>
+            <th>Tema Principal</th>
+            <th>Referência / PDF</th>
+            <th>Fundamento Neuro</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>5</td>
+            <td>A Voz do Violão</td>
+            <td><a href="https://www.dropbox.com/scl/fi/sg5tdkplz660acdl0fmdg/42.pdf?rlkey=akfnpamiid2vgj8nop74bvknj&st=byj8xck4&dl=0" target="_blank">Pequena Anedota — Crescendo/Diminuendo (p. 42) ↗</a></td>
+            <td>Sistema Límbico e Emoção</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Arpejo e Automatismo</td>
+            <td><a href="https://www.dropbox.com/scl/fi/6rz121picvl1lajjoyti7/43.pdf?rlkey=tg4x9wt5608edqtr4jg10bfbj&st=61evfrkt&dl=0" target="_blank">Estudo de Arpejos de Aguado (p. 43) ↗</a></td>
+            <td>Chunking (Agrupamento Cognitivo)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Módulo 4 -->
+    <div class="curriculum-section">
+      <div class="curriculum-section-header">
+        <span class="mod-num">MOD 4</span>
+        <h3>Consolidação e Performance</h3>
+        <span class="neuro-pill">Córtex Pré-Frontal</span>
+      </div>
+      <table class="curriculum-table">
+        <thead>
+          <tr>
+            <th>Aula</th>
+            <th>Tema Principal</th>
+            <th>Referência / PDF</th>
+            <th>Fundamento Neuro</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>7</td>
+            <td>Ciência da Memorização</td>
+            <td><a href="https://www.dropbox.com/scl/fi/t049h0oeshug8n6ohph68/41-45.pdf?rlkey=njvay65n38wiv98cgu3f77dvw&st=0nzwouen&dl=0" target="_blank">Estudo Napoleon Coste (pp. 41–45) ↗</a></td>
+            <td>Consolidação de Memória e Sono</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>Performance sob Pressão</td>
+            <td><a href="https://www.dropbox.com/scl/fi/zs53jrdzw86b1a25hn9qq/47.pdf?rlkey=mns301n6e4s2xu3a4p537xztf&st=wqbjfzq2&dl=0" target="_blank">Pequena Peça de Paganini (p. 47) ↗</a></td>
+            <td>Controle do Córtex Pré-Frontal</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══ PANEL: METODOLOGIA ══ -->
+  <div id="panel-metodologia" class="tab-panel">
+    <div class="section-title">Metodologia de Estudo Recomendada</div>
+
+    <div class="intro-block">
+      <h2>Diretrizes Baseadas em Evidências</h2>
+      <p>A aplicação prática deste plano deve seguir diretrizes científicas para maximizar os resultados. Cada pilar metodológico tem base no funcionamento do sistema nervoso e na neurociência do aprendizado motor.</p>
+    </div>
+
+    <div class="method-grid">
+      <div class="method-item">
+        <span class="method-icon">🔀</span>
+        <div class="method-title">Prática Intercalada</div>
+        <div class="method-desc">Em vez de focar em um único exercício por longos períodos, alterne entre escalas, estudos e repertório em blocos de 15 minutos. Isso mantém o cérebro em alerta constante, facilitando a reaquisição e combatendo a fadiga neural.</div>
+      </div>
+      <div class="method-item">
+        <span class="method-icon">🧘</span>
+        <div class="method-title">Visualização Mental</div>
+        <div class="method-desc">Dedique os primeiros minutos de cada sessão para imaginar vividamente os movimentos e o som desejado. Estudos mostram que a prática mental ativa as mesmas redes neurais que a prática física — um poderoso catalisador para a memória muscular.</div>
+      </div>
+      <div class="method-item">
+        <span class="method-icon">✔️</span>
+        <div class="method-title">Regra dos 7 Acertos</div>
+        <div class="method-desc">A Regra dos 7 de Segovia garante que o padrão motor correto seja o último a ser registrado pelo cérebro antes de uma pausa. Isso consolida a excelência técnica — o cérebro memoriza o que foi repetido por último.</div>
+      </div>
+    </div>
+
+    <div class="section-title">Estrutura Pedagógica</div>
+
+    <div class="modules-grid">
+      <div class="module-card">
+        <div class="module-number">01</div>
+        <div class="module-badge">Iniciante</div>
+        <div class="module-title">Fundações</div>
+        <div class="module-subtitle">Módulo 1 · Mielinização</div>
+        <ul class="module-lessons">
+          <li><span class="lesson-dot"></span><div>Focado na entrada do aluno e no estabelecimento de hábitos posturais corretos desde o início.</div></li>
+          <li><span class="lesson-dot"></span><div>A qualidade das primeiras conexões neurais determina a facilidade de progresso futuro.</div></li>
+        </ul>
+        <span class="neuro-tag">🧬 Mielinização</span>
+      </div>
+
+      <div class="module-card">
+        <div class="module-number">02</div>
+        <div class="module-badge">Iniciante–Intermediário</div>
+        <div class="module-title">Técnica de Escalas</div>
+        <div class="module-subtitle">Módulo 2 · Plasticidade Neural</div>
+        <ul class="module-lessons">
+          <li><span class="lesson-dot"></span><div>O núcleo técnico do método Segovia — 7 combinações de dedilhado para máxima variabilidade.</div></li>
+          <li><span class="lesson-dot"></span><div>Mapeamento espacial do braço do violão como "GPS interno" no córtex cerebral.</div></li>
+        </ul>
+        <span class="neuro-tag">🔗 LTP — Long-Term Potentiation</span>
+      </div>
+
+      <div class="module-card">
+        <div class="module-number">03</div>
+        <div class="module-badge">Intermediário</div>
+        <div class="module-title">Expressão Musical</div>
+        <div class="module-subtitle">Módulo 3 · Sistema Límbico</div>
+        <ul class="module-lessons">
+          <li><span class="lesson-dot"></span><div>Desenvolvimento da musicalidade e repertório — o violão que canta.</div></li>
+          <li><span class="lesson-dot"></span><div>Dinâmicas e timbre ativam centros de recompensa no cérebro, tornando o aprendizado prazeroso.</div></li>
+        </ul>
+        <span class="neuro-tag">🎭 Sistema Límbico</span>
+      </div>
+
+      <div class="module-card">
+        <div class="module-number">04</div>
+        <div class="module-badge">Intermediário–Avançado</div>
+        <div class="module-title">Mastery & Performance</div>
+        <div class="module-subtitle">Módulo 4 · Córtex Pré-Frontal</div>
+        <ul class="module-lessons">
+          <li><span class="lesson-dot"></span><div>Finalização e técnicas de performance pública — controle da ansiedade de palco.</div></li>
+          <li><span class="lesson-dot"></span><div>Consolidação da memória durante o sono — aspecto vital da excelência técnica.</div></li>
+        </ul>
+        <span class="neuro-tag">🎯 Córtex Pré-Frontal</span>
+      </div>
+    </div>
+
+    <div class="ref-block">
+      <h4>Nota Pedagógica</h4>
+      <ol style="list-style:none;padding:0;">
+        <li style="font-style:normal;color:rgba(247,242,232,0.65);font-size:0.82rem;line-height:1.7;">Este plano de aula é um roteiro pedagógico proprietário do Instituto Urbano Rocha, desenvolvido por Prof. Urbano Rocha. Integra a tradição técnica de Andrés Segovia com as mais recentes descobertas da neurociência do aprendizado motor.</li>
+      </ol>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  &copy; 2025 Instituto Urbano Rocha · Arte, Formação e Expressão Musical · Por Prof. Urbano Rocha
+</footer>
+
+<script>
+  function switchTab(id) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+
+    const order = ['introducao','neurociencia','escalas','estudos','plano','metodologia'];
+    const idx = order.indexOf(id);
+    if (idx > -1) document.querySelectorAll('.tab-btn')[idx].classList.add('active');
+    document.getElementById('panel-' + id).classList.add('active');
+  }
+</script>
+</body>
+</html>
